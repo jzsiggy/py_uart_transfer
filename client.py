@@ -64,8 +64,9 @@ class Client:
     confirmed = self.receive_confirmation()
     while not confirmed:
       print('SERVER DISCONNECTED')
-      retry = input('RETRY CONNECTION? (y/n)')
+      retry = input('RETRY CONNECTION? (y/n) ')
       if retry == 'y':
+        self.send_handshake()
         print('ASSERTING SERVER CONNECTION')
         confirmed = self.receive_confirmation()
       else:
