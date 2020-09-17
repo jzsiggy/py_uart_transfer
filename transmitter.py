@@ -39,12 +39,12 @@ class Transmitter:
       return 0
 
     if MESSAGE_TYPE[msg_type] == 'data':
-      print('RECEIVED PAYLOAD')
+      print('RECEIVING PAYLOAD')
       payload_status, payload = self.get_payload(payload_size)
       if not payload_status:
         print('ERROR PARSING PAYLOAD')
         return 0
-        
+
       if not self.get_EOP():
         return 0
       return(payload, payload_index, num_payloads)
