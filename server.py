@@ -35,7 +35,11 @@ class Server:
     self.transmitter.send(packet.get_datagram())
 
   def confirm_handshake(self):
-    self.transmitter.receive(expected_type='handshake')
+    handshake_received = self.transmitter.receive(expected_type='handshake')
+    print(handshake_received)
+    while not handshake_received:
+      print('HANDSHAKE NOT SENT BY CLIENT - LISTENING ON SERIAL PORT {}'.format(SERIAL))
+      handshake_received = self.transmitter.receive(expected_type='handshake')
     print('HANDSHAKE RECEIVED')
     self.send_confirmation()
     print('HANDSHAKE CONFIRMED')
